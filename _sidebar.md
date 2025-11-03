@@ -37,5 +37,5 @@
 ---
 
 * **Links**
-  * [GitHub Repo](https://github.com/codygontechadmin/cement-ai)
+  * [GitHub Repo](https://github.com/codygontech/cement-ai)
   * [Google Cloud](https://cloud.google.com)

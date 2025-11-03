@@ -26,7 +26,7 @@ The project is organized into three separate branches:
 
 ```bash
 # Clone the repository
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 
 # For frontend development
@@ -370,8 +370,8 @@ Now that your system is running:
 - **Documentation**: Browse this wiki
 - **API Docs**: `http://localhost:8000/docs`
 - **Technical Support**: support@codygon.com
-- **Issues**: [GitHub Issues](https://github.com/codygontechadmin/cement-ai/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/codygontechadmin/cement-ai/discussions)
+- **Issues**: [GitHub Issues](https://github.com/codygontech/cement-ai/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/codygontech/cement-ai/discussions)
 
 ---
 

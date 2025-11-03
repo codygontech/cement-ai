@@ -218,7 +218,7 @@ The project uses **separate branches** for different components:
 1. Fork the repository
 2. Clone and checkout the `docs` branch:
    ```bash
-   git clone https://github.com/codygontechadmin/cement-ai.git
+   git clone https://github.com/codygontech/cement-ai.git
    git checkout docs
    ```
 3. Make your changes to the Markdown files
@@ -236,8 +236,8 @@ See [Contributing Guide](./development/contributing.md) for details.
 ## 📞 Get Help
 
 ### Documentation Issues
-- **Found a bug in docs?** [Open an Issue](https://github.com/codygontechadmin/cement-ai/issues)
-- **Have a suggestion?** [Start a Discussion](https://github.com/codygontechadmin/cement-ai/discussions)
+- **Found a bug in docs?** [Open an Issue](https://github.com/codygontech/cement-ai/issues)
+- **Have a suggestion?** [Start a Discussion](https://github.com/codygontech/cement-ai/discussions)
 
 ### Technical Support
 - **Email**: support@codygon.com

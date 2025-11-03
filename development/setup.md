@@ -28,7 +28,7 @@ The project uses a **multi-branch architecture** with separate branches for each
 
 1. **Clone Repository**
    ```bash
-   git clone https://github.com/codygontechadmin/cement-ai.git
+   git clone https://github.com/codygontech/cement-ai.git
    cd cement-ai
    ```
 
@@ -49,7 +49,7 @@ The project uses a **multi-branch architecture** with separate branches for each
    ```bash
    # Clone again or use a separate directory
    cd ../cement-ai-frontend
-   git clone https://github.com/codygontechadmin/cement-ai.git .
+   git clone https://github.com/codygontech/cement-ai.git .
    git checkout frontend
    
    # Install dependencies

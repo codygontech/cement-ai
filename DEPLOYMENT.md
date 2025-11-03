@@ -130,7 +130,7 @@ Convert your Markdown to a beautiful static site using **Docsify**, **MkDocs**, 
   <script>
     window.$docsify = {
       name: 'JK Cement AI Docs',
-      repo: 'https://github.com/codygontechadmin/cement-ai',
+      repo: 'https://github.com/codygontech/cement-ai',
       loadSidebar: true,
       subMaxLevel: 2,
       search: 'auto',
@@ -215,7 +215,7 @@ site_name: JK Cement AI Documentation
 site_url: https://your-site-name.netlify.app
 site_description: Complete documentation for JK Cement AI Optimization System
 site_author: JK Cement Team
-repo_url: https://github.com/codygontechadmin/cement-ai
+repo_url: https://github.com/codygontech/cement-ai
 repo_name: cement-ai
 
 theme:
@@ -272,7 +272,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/codygontechadmin/cement-ai
+      link: https://github.com/codygontech/cement-ai
 ```
 
 **Step 3: Create `netlify.toml`**
@@ -437,7 +437,7 @@ docs-wiki/
 * [Home](/)
 * [API Docs](backend/api-reference.md)
 * [Quick Start](getting-started/quick-start.md)
-* [GitHub](https://github.com/codygontechadmin/cement-ai)
+* [GitHub](https://github.com/codygontech/cement-ai)
 ```
 
 **3. `.nojekyll`**

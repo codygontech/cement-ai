@@ -10,7 +10,7 @@ The JK Cement AI Optimization System uses a **multi-branch repository structure*
 
 ```mermaid
 graph TB
-    A[cement-ai Repository<br/>github.com/codygontechadmin/cement-ai]
+    A[cement-ai Repository<br/>github.com/codygontech/cement-ai]
     
     A --> B[Branch: frontend]
     A --> C[Branch: backend]
@@ -71,7 +71,7 @@ cement-ai/ (frontend branch)
 
 **Development**:
 ```bash
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 git checkout frontend
 npm install
@@ -128,7 +128,7 @@ cement-ai/ (backend branch)
 
 **Development**:
 ```bash
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 git checkout backend
 python -m venv venv
@@ -183,7 +183,7 @@ cement-ai/ (docs branch)
 
 **Development**:
 ```bash
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 git checkout docs
 npx docsify serve .
@@ -253,13 +253,13 @@ mkdir cement-ai-workspace
 cd cement-ai-workspace
 
 # Clone frontend
-git clone -b frontend https://github.com/codygontechadmin/cement-ai.git frontend
+git clone -b frontend https://github.com/codygontech/cement-ai.git frontend
 
 # Clone backend
-git clone -b backend https://github.com/codygontechadmin/cement-ai.git backend
+git clone -b backend https://github.com/codygontech/cement-ai.git backend
 
 # Clone docs
-git clone -b docs https://github.com/codygontechadmin/cement-ai.git docs
+git clone -b docs https://github.com/codygontech/cement-ai.git docs
 
 # Result:
 # cement-ai-workspace/
@@ -274,7 +274,7 @@ Use Git worktrees to manage multiple branches efficiently:
 
 ```bash
 # Clone the main repository
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 
 # Create worktrees for each branch
@@ -294,7 +294,7 @@ git worktree add ../cement-ai-docs docs
 For documentation-only work or when working on one component at a time:
 
 ```bash
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 
 # Work on frontend
@@ -493,4 +493,4 @@ git log --all --graph --decorate --oneline
 
 ---
 
-**Questions?** Open an issue on [GitHub](https://github.com/codygontechadmin/cement-ai/issues)
+**Questions?** Open an issue on [GitHub](https://github.com/codygontech/cement-ai/issues)

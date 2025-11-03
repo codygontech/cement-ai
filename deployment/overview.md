@@ -68,7 +68,7 @@ Each branch can be deployed independently, allowing for:
 
 ```bash
 # Clone and checkout backend branch
-git clone https://github.com/codygontechadmin/cement-ai.git backend-deploy
+git clone https://github.com/codygontech/cement-ai.git backend-deploy
 cd backend-deploy
 git checkout backend
 ```
@@ -91,7 +91,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
 
 ```bash
 # Clone and checkout frontend branch
-git clone https://github.com/codygontechadmin/cement-ai.git frontend-deploy
+git clone https://github.com/codygontech/cement-ai.git frontend-deploy
 cd frontend-deploy
 git checkout frontend
 ```
@@ -251,7 +251,7 @@ sudo usermod -aG docker $USER
 
 ```bash
 # Clone repository
-git clone https://github.com/codygontechadmin/cement-ai.git
+git clone https://github.com/codygontech/cement-ai.git
 cd cement-ai
 
 # Set up backend
