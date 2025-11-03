@@ -85,7 +85,7 @@ export function AIChatModule() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/ai/chat', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ai/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export function AIChatModule() {
       console.error('Error sending message:', error);
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'Sorry, I encountered an error. Please make sure the backend server is running on http://localhost:8000',
+        content: `Sorry, I encountered an error. Please make sure the backend server is running at ${process.env.NEXT_PUBLIC_API_URL}`,
         timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -148,7 +148,7 @@ export function AIChatModule() {
     setIsLoading(true);
 
     // Send to backend
-    fetch('http://localhost:8000/api/ai/chat', {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ai/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -179,7 +179,7 @@ export function AIChatModule() {
         console.error('Error sending message:', error);
         const errorMessage: Message = {
           role: 'assistant',
-          content: 'Sorry, I encountered an error. Please make sure the backend server is running on http://localhost:8000',
+          content: `Sorry, I encountered an error. Please make sure the backend server is running at ${process.env.NEXT_PUBLIC_API_URL}`,
           timestamp: new Date().toISOString()
         };
         setMessages(prev => [...prev, errorMessage]);
