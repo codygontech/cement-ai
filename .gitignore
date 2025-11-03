@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.local.example
 
 # vercel
 .vercel
@@ -39,5 +40,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Google Cloud
 cloud-sql-proxy.exe
 cloud-sql-proxy
+service-account*.json
+*-key.json
+gcloud-config/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
