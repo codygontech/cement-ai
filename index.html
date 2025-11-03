@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JK Cement AI Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Complete documentation for JK Cement AI Optimization System - AI-powered cement plant monitoring and optimization">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --theme-color: #4285F4;
+      --code-theme-background: #f6f8fa;
+    }
+    .sidebar {
+      border-right: 1px solid #eaecef;
+    }
+    .sidebar-nav > ul > li > a {
+      font-weight: 600;
+    }
+    .markdown-section code {
+      font-size: 0.9em;
+      padding: 2px 6px;
+      background-color: var(--code-theme-background);
+      border-radius: 3px;
+    }
+    .markdown-section pre > code {
+      padding: 1em;
+    }
+    .app-name {
+      font-size: 1.3em;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">Loading documentation...</div>
+  <script>
+    window.$docsify = {
+      name: 'JK Cement AI Docs',
+      repo: 'https://github.com/codygontechadmin/cement-ai',
+      loadSidebar: true,
+      loadNavbar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      maxLevel: 4,
+      search: {
+        placeholder: 'Search documentation...',
+        noData: 'No results found',
+        depth: 4,
+        paths: 'auto'
+      },
+      themeColor: '#4285F4',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/.*/_navbar.md': '/_navbar.md'
+      },
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+      copyCode: {
+        buttonText: 'Copy',
+        errorText: 'Error',
+        successText: 'Copied!'
+      },
+      markdown: {
+        renderer: {
+          code: function(code, lang) {
+            if (lang === "mermaid") {
+              return '<div class="mermaid">' + code + '</div>';
+            }
+            return this.origin.code.apply(this, arguments);
+          }
+        }
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(content) {
+            return content;
+          });
+          hook.afterEach(function(html, next) {
+            // Add footer with Codygon branding
+            var footer = [
+              '<hr/>',
+              '<footer style="text-align: center; padding: 20px; color: #666; font-size: 0.9em;">',
+              '<p><strong>Developed by Codygon Technologies Private Limited</strong></p>',
+              '<p>Support: <a href="mailto:support@codygon.com">support@codygon.com</a></p>',
+              '<p>&copy; 2025 Codygon Technologies Private Limited. All rights reserved.</p>',
+              '</footer>'
+            ].join('');
+            next(html + footer);
+          });
+          hook.doneEach(function() {
+            if (typeof mermaid !== 'undefined') {
+              mermaid.init(undefined, '.mermaid');
+              
+              // Add zoom and download functionality to Mermaid diagrams
+              setTimeout(function() {
+                document.querySelectorAll('.mermaid').forEach(function(diagram, index) {
+                  // Wrap diagram in a container
+                  if (!diagram.parentElement.classList.contains('mermaid-container')) {
+                    var container = document.createElement('div');
+                    container.className = 'mermaid-container';
+                    container.style.cssText = 'position: relative; margin-bottom: 40px; padding-top: 70px;';
+                    diagram.parentNode.insertBefore(container, diagram);
+                    container.appendChild(diagram);
+                    
+                    // Add control buttons ABOVE the diagram
+                    var controls = document.createElement('div');
+                    controls.className = 'mermaid-controls';
+                    controls.style.cssText = 'position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; gap: 12px; padding: 15px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 20px;';
+                    
+                    var buttonStyle = 'padding: 10px 20px; cursor: pointer; border: 1px solid #d1d5db; background: white; border-radius: 6px; font-size: 14px; font-weight: 500; color: #374151; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05);';
+                    
+                    // Zoom In button
+                    var zoomInBtn = document.createElement('button');
+                    zoomInBtn.textContent = '🔍 Zoom In';
+                    zoomInBtn.title = 'Zoom In';
+                    zoomInBtn.style.cssText = buttonStyle;
+                    zoomInBtn.onmouseover = function() { this.style.background = '#f3f4f6'; this.style.borderColor = '#9ca3af'; };
+                    zoomInBtn.onmouseout = function() { this.style.background = 'white'; this.style.borderColor = '#d1d5db'; };
+                    zoomInBtn.onclick = function() {
+                      var svg = diagram.querySelector('svg');
+                      if (svg) {
+                        var currentScale = parseFloat(svg.dataset.scale || 1);
+                        var newScale = currentScale * 1.2;
+                        svg.style.transform = 'scale(' + newScale + ')';
+                        svg.style.transformOrigin = 'center top';
+                        svg.style.transition = 'transform 0.2s ease';
+                        svg.dataset.scale = newScale;
+                      }
+                    };
+                    
+                    // Zoom Out button
+                    var zoomOutBtn = document.createElement('button');
+                    zoomOutBtn.textContent = '🔍 Zoom Out';
+                    zoomOutBtn.title = 'Zoom Out';
+                    zoomOutBtn.style.cssText = buttonStyle;
+                    zoomOutBtn.onmouseover = function() { this.style.background = '#f3f4f6'; this.style.borderColor = '#9ca3af'; };
+                    zoomOutBtn.onmouseout = function() { this.style.background = 'white'; this.style.borderColor = '#d1d5db'; };
+                    zoomOutBtn.onclick = function() {
+                      var svg = diagram.querySelector('svg');
+                      if (svg) {
+                        var currentScale = parseFloat(svg.dataset.scale || 1);
+                        var newScale = Math.max(0.5, currentScale * 0.8);
+                        svg.style.transform = 'scale(' + newScale + ')';
+                        svg.style.transformOrigin = 'center top';
+                        svg.style.transition = 'transform 0.2s ease';
+                        svg.dataset.scale = newScale;
+                      }
+                    };
+                    
+                    // Reset button
+                    var resetBtn = document.createElement('button');
+                    resetBtn.textContent = '↻ Reset';
+                    resetBtn.title = 'Reset Zoom';
+                    resetBtn.style.cssText = buttonStyle;
+                    resetBtn.onmouseover = function() { this.style.background = '#f3f4f6'; this.style.borderColor = '#9ca3af'; };
+                    resetBtn.onmouseout = function() { this.style.background = 'white'; this.style.borderColor = '#d1d5db'; };
+                    resetBtn.onclick = function() {
+                      var svg = diagram.querySelector('svg');
+                      if (svg) {
+                        svg.style.transform = 'scale(1)';
+                        svg.style.transition = 'transform 0.2s ease';
+                        svg.dataset.scale = 1;
+                      }
+                    };
+                    
+                    // Download button
+                    var downloadBtn = document.createElement('button');
+                    downloadBtn.textContent = '⬇️ Download PNG';
+                    downloadBtn.title = 'Download as PNG';
+                    downloadBtn.style.cssText = buttonStyle;
+                    downloadBtn.onmouseover = function() { this.style.background = '#f3f4f6'; this.style.borderColor = '#9ca3af'; };
+                    downloadBtn.onmouseout = function() { this.style.background = 'white'; this.style.borderColor = '#d1d5db'; };
+                    downloadBtn.onclick = function() {
+                      var svg = diagram.querySelector('svg');
+                      if (svg) {
+                        // Clone the SVG to avoid affecting the display
+                        var svgClone = svg.cloneNode(true);
+                        svgClone.style.transform = '';
+                        
+                        // Convert SVG to PNG
+                        var svgData = new XMLSerializer().serializeToString(svgClone);
+                        var canvas = document.createElement('canvas');
+                        var ctx = canvas.getContext('2d');
+                        var img = new Image();
+                        
+                        img.onload = function() {
+                          canvas.width = img.width;
+                          canvas.height = img.height;
+                          ctx.fillStyle = 'white';
+                          ctx.fillRect(0, 0, canvas.width, canvas.height);
+                          ctx.drawImage(img, 0, 0);
+                          
+                          // Download
+                          var link = document.createElement('a');
+                          link.download = 'diagram-' + (index + 1) + '.png';
+                          link.href = canvas.toDataURL('image/png');
+                          link.click();
+                        };
+                        
+                        img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+                      }
+                    };
+                    
+                    controls.appendChild(zoomInBtn);
+                    controls.appendChild(zoomOutBtn);
+                    controls.appendChild(resetBtn);
+                    controls.appendChild(downloadBtn);
+                    container.insertBefore(controls, diagram);
+                  }
+                });
+              }, 500);
+            }
+          });
+        }
+      ]
+    }
+  </script>
+  <!-- Docsify core -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <!-- Search plugin -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  
+  <!-- Copy code plugin -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+  
+  <!-- Pagination plugin -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-nginx.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
+  
+  <!-- Emoji support -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  
+  <!-- Zoom image -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  
+  <!-- Mermaid diagrams -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+      startOnLoad: true,
+      theme: 'default',
+      themeVariables: {
+        primaryColor: '#4285F4',
+        primaryTextColor: '#000',
+        primaryBorderColor: '#1967D2',
+        lineColor: '#5F6368',
+        secondaryColor: '#34A853',
+        tertiaryColor: '#FBBC04'
+      },
+      securityLevel: 'loose',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    });
+    window.mermaid = mermaid;
+  </script>
+</body>
+</html>
