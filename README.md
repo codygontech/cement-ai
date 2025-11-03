@@ -105,13 +105,6 @@ This system transforms traditional cement plant operations through advanced AI t
 - **PostgreSQL** 14+ (or use Google Cloud SQL)
 - **Google Cloud Account** with billing enabled
 
-### Repository Structure
-
-This project is organized across multiple branches:
-- **`docs`** - Complete documentation and wiki
-- **`backend`** - Python FastAPI backend with AI agent
-- **`frontend`** - Next.js frontend application
-
 ### Quick Setup
 
 1. **Clone the repository**
@@ -121,10 +114,7 @@ This project is organized across multiple branches:
    ```
 
 2. **Backend Setup**
-   
-   Switch to the backend branch:
    ```bash
-   git checkout backend
    cd backend
    
    # Install dependencies
@@ -142,10 +132,8 @@ This project is organized across multiple branches:
    ```
 
 3. **Frontend Setup**
-   
-   Switch to the frontend branch:
    ```bash
-   git checkout frontend
+   cd ..  # Return to root directory
    
    # Install dependencies
    npm install
@@ -159,9 +147,14 @@ This project is organized across multiple branches:
    - Backend API: http://localhost:8000
    - API Documentation: http://localhost:8000/docs
 
+5. **Telemetry**
+   
+   This application collects anonymous usage data to help improve the product. No personal information is collected.
+   The telemetry includes system information (OS, CPU, memory), configuration details, and usage patterns.
+
 ### Configuration
 
-Create a `.env` file in the backend branch with the following variables:
+Create a `.env` file in the `backend` directory with the following variables:
 
 ```env
 # Google Cloud
@@ -213,34 +206,27 @@ Access real-time dashboards for:
 
 ## 📦 Project Structure
 
-The codebase is organized across separate branches:
-
-**`backend` branch** - Python FastAPI backend
 ```
-backend/
-├── app/
-│   ├── agents/            # LangGraph AI agent
-│   ├── core/              # Configuration & database
-│   ├── routers/           # API endpoints
-│   └── main.py            # Application entry point
-├── scripts/               # Database utilities
-└── requirements.txt
-```
-
-**`frontend` branch** - Next.js frontend
-```
-src/
-├── app/                   # App router pages
-├── components/            # React components
-│   ├── modules/          # Feature modules
-│   └── ui/               # UI components
-├── lib/                   # Utilities & API client
-└── types/                 # TypeScript definitions
-```
-
-**`docs` branch** - Documentation
-```
-/                # Complete project documentation
+cement-ai/
+├── backend/                    # Python FastAPI backend
+│   ├── app/
+│   │   ├── agents/            # LangGraph AI agent
+│   │   ├── core/              # Configuration & database
+│   │   ├── routers/           # API endpoints
+│   │   └── main.py            # Application entry point
+│   ├── scripts/               # Database utilities
+│   └── requirements.txt
+│
+├── src/                       # Next.js frontend
+│   ├── app/                   # App router pages
+│   ├── components/            # React components
+│   │   ├── modules/          # Feature modules
+│   │   └── ui/               # UI components
+│   ├── lib/                   # Utilities & API client
+│   └── types/                 # TypeScript definitions
+│
+├── docs-wiki/                 # Documentation
+└── public/                    # Static assets
 ```
 
 ---
@@ -283,11 +269,13 @@ This system delivers measurable improvements to cement plant operations:
 
 ---
 
-## 📚 Documentation
+## � Documentation
 
 - **[Quick Start Guide](./QUICKSTART.md)** - Get up and running in 5 minutes
 - **[Setup Guide](./SETUP.md)** - Detailed installation instructions
-- **Documentation Wiki** - Available in the `docs` branch for complete project documentation
+- **[Architecture](./docs-wiki/getting-started/architecture.md)** - System design and components
+- **[API Reference](./docs-wiki/backend/api-reference.md)** - Backend API documentation
+- **[Cost Analysis](./docs-wiki/deployment/cost-analysis.md)** - Deployment costs and ROI
 
 ---
 
