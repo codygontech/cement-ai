@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from './header';
 import { Sidebar } from './sidebar';
 import { useActiveModule } from '@/hooks/use-active-module';
@@ -17,6 +17,7 @@ import { PlantLocations } from '@/components/modules/plant-locations';
 
 export function MainLayout() {
   const { activeModule, switchModule } = useActiveModule();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const renderActiveModule = () => {
     switch (activeModule) {
@@ -47,24 +48,26 @@ export function MainLayout() {
 
   return (
     <div className="h-screen w-full bg-gradient-to-br from-background via-muted/30 to-background overflow-hidden">
-      <Header />
+      <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       
       <div className="flex h-[calc(100vh-4rem)]">
         <Sidebar 
           activeModule={activeModule} 
-          onModuleChange={switchModule} 
+          onModuleChange={switchModule}
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
         />
         
-        <main className="flex-1 ml-72 overflow-y-auto overflow-x-hidden h-full">
-          <div className="p-8 pb-16">
+        <main className="flex-1 lg:ml-72 overflow-y-auto overflow-x-hidden h-full">
+          <div className="p-4 md:p-6 lg:p-8 pb-20 md:pb-24">
             {renderActiveModule()}
           </div>
           
           {/* Fixed Footer */}
-          <footer className="fixed bottom-0 left-72 right-0 bg-white dark:bg-gray-950 py-3 px-8 z-20">
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <p>© {new Date().getFullYear()} Codygon Technologies Private Limited. All rights reserved.</p>
-              <p>Cement AI - Intelligent Plant Management System</p>
+          <footer className="fixed bottom-0 left-0 lg:left-72 right-0 bg-white dark:bg-gray-950 py-3 px-4 md:px-8 z-20 border-t border-border">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+              <p className="text-center sm:text-left">© {new Date().getFullYear()} Codygon Technologies Private Limited. All rights reserved.</p>
+              <p className="text-center sm:text-right">Cement AI - Intelligent Plant Management System</p>
             </div>
           </footer>
         </main>

@@ -207,6 +207,18 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary)));
 }
 
+/* Mobile scrollbar - thinner on small screens */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border: 1px solid hsl(var(--muted));
+  }
+}
+
 /* Glassmorphism effect */
 .glass {
   background: rgba(255, 255, 255, 0.7);
@@ -221,3 +233,28 @@ h1, h2, h3, h4, h5, h6 {
               0 0 60px hsl(var(--primary) / 0.1);
 }
 
+/* Mobile responsive utilities */
+@media (max-width: 640px) {
+  /* Reduce chart heights on mobile */
+  .recharts-wrapper {
+    max-width: 100% !important;
+  }
+  
+  /* Better touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Prevent horizontal overflow on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better touch scrolling on mobile */
+@media (max-width: 1024px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}

@@ -190,27 +190,27 @@ export function AIChatModule() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Header with gradient accent */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-3 md:gap-4">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-purple-600 rounded-2xl blur-lg opacity-50 animate-pulse"></div>
-            <div className="relative bg-gradient-to-br from-orange-500 to-purple-600 p-3 rounded-2xl">
-              <MessageSquare className="h-7 w-7 text-white" />
+            <div className="relative bg-gradient-to-br from-orange-500 to-purple-600 p-2.5 md:p-3 rounded-2xl">
+              <MessageSquare className="h-5 w-5 md:h-7 md:w-7 text-white" />
             </div>
           </div>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-xl md:text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">
               AI Chat Assistant
             </h2>
-            <p className="text-sm text-muted-foreground flex items-center gap-1.5 mt-1">
-              <Sparkles className="h-3.5 w-3.5" />
+            <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1.5 mt-1">
+              <Sparkles className="h-3 w-3 md:h-3.5 md:w-3.5" />
               Powered by Google Gemini & LangGraph
             </p>
           </div>
         </div>
-        <Badge variant="secondary" className="text-sm px-4 py-2 bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+        <Badge variant="secondary" className="text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 bg-emerald-500/10 text-emerald-600 border-emerald-500/20 self-start sm:self-auto">
           <span className="relative flex h-2 w-2 mr-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -220,36 +220,36 @@ export function AIChatModule() {
       </div>
 
       {/* Chat Messages with modern card */}
-      <Card className="h-[600px] flex flex-col shadow-xl border-0 bg-gradient-to-b from-card to-card/50 backdrop-blur">
-        <CardContent className="flex-1 overflow-y-auto p-8 space-y-8">
+      <Card className="h-[500px] sm:h-[600px] flex flex-col shadow-xl border-0 bg-gradient-to-b from-card to-card/50 backdrop-blur">
+        <CardContent className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-8">
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 ${
+              className={`flex gap-2 sm:gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 ${
                 message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
               }`}
             >
               <div
-                className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center shadow-lg ${
+                className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow-lg ${
                   message.role === 'user'
                     ? 'bg-gradient-to-br from-orange-500 to-orange-600'
                     : 'bg-gradient-to-br from-purple-500 to-purple-600'
                 }`}
               >
                 {message.role === 'user' ? (
-                  <User className="h-5 w-5 text-white" />
+                  <User className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                 ) : (
-                  <Bot className="h-5 w-5 text-white" />
+                  <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                 )}
               </div>
               <div
-                className={`flex-1 rounded-2xl p-5 shadow-md transition-all hover:shadow-lg max-w-[85%] ${
+                className={`flex-1 rounded-2xl p-3 sm:p-5 shadow-md transition-all hover:shadow-lg max-w-[85%] ${
                   message.role === 'user'
                     ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white'
                     : 'bg-gradient-to-br from-muted to-muted/50 border border-border/50'
                 }`}
               >
-                <div className="text-sm leading-relaxed">
+                <div className="text-xs sm:text-sm leading-relaxed">
                   {message.role === 'assistant' ? formatMessage(message.content) : message.content}
                 </div>
                 {/* Timestamp hidden for now */}
@@ -263,36 +263,36 @@ export function AIChatModule() {
             </div>
           ))}
           {isLoading && (
-            <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
-                <Bot className="h-5 w-5 text-white" />
+            <div className="flex gap-2 sm:gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
+                <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
               </div>
-              <div className="flex-1 rounded-2xl p-5 bg-gradient-to-br from-muted to-muted/50 border border-border/50 shadow-md max-w-[85%]">
+              <div className="flex-1 rounded-2xl p-3 sm:p-5 bg-gradient-to-br from-muted to-muted/50 border border-border/50 shadow-md max-w-[85%]">
                 <div className="flex items-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin text-purple-600" />
-                  <span className="text-sm">AI is analyzing your request...</span>
+                  <span className="text-xs sm:text-sm">AI is analyzing your request...</span>
                 </div>
               </div>
             </div>
           )}
           <div ref={messagesEndRef} />
         </CardContent>
-        <div className="border-t p-6 bg-gradient-to-r from-orange-500/5 to-purple-600/5 backdrop-blur">
+        <div className="border-t p-4 sm:p-6 bg-gradient-to-r from-orange-500/5 to-purple-600/5 backdrop-blur">
           {/* Dynamic Recommendations */}
           {recommendations.length > 0 && (
-            <div className="mb-4">
-              <p className="text-xs font-medium text-muted-foreground mb-3 flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5 text-orange-500" />
+            <div className="mb-3 sm:mb-4">
+              <p className="text-xs font-medium text-muted-foreground mb-2 sm:mb-3 flex items-center gap-1.5">
+                <Sparkles className="h-3 w-3 md:h-3.5 md:w-3.5 text-orange-500" />
                 Suggested follow-ups
               </p>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2 sm:gap-2.5">
                 {recommendations.map((recommendation, index) => (
                   <Button
                     key={index}
                     variant="default"
                     size="sm"
                     onClick={() => handleRecommendationClick(recommendation)}
-                    className="text-xs bg-gradient-to-br from-orange-500 to-purple-600 text-white hover:from-orange-600 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md border-0"
+                    className="text-[10px] sm:text-xs bg-gradient-to-br from-orange-500 to-purple-600 text-white hover:from-orange-600 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md border-0"
                     disabled={isLoading}
                   >
                     {recommendation}
@@ -303,75 +303,76 @@ export function AIChatModule() {
           )}
           
           {/* Input Field with modern styling */}
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3">
             <div className="flex-1 relative">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask about plant operations, get insights, or request analysis..."
+                placeholder="Ask about plant operations..."
                 disabled={isLoading}
-                className="pr-4 py-6 shadow-md border border-border/30 bg-muted/30 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 focus-visible:bg-background transition-all"
+                className="pr-3 sm:pr-4 py-5 sm:py-6 text-sm shadow-md border border-border/30 bg-muted/30 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 focus-visible:bg-background transition-all"
               />
             </div>
             <Button
               onClick={handleSend}
               disabled={isLoading || !input.trim()}
               size="icon"
-              className="h-auto w-12 bg-gradient-to-br from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="h-auto w-10 sm:w-12 bg-gradient-to-br from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {isLoading ? (
-                <Loader2 className="h-5 w-5 animate-spin" />
+                <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
               ) : (
-                <Send className="h-5 w-5" />
+                <Send className="h-4 w-4 sm:h-5 sm:w-5" />
               )}
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1.5">
+          <p className="text-[10px] sm:text-xs text-muted-foreground mt-2 sm:mt-3 flex items-center gap-1.5">
             <Sparkles className="h-3 w-3 text-purple-500" />
-            Powered by Google Gemini 2.0 • Press Enter to send
+            <span className="hidden sm:inline">Powered by Google Gemini 2.0 • Press Enter to send</span>
+            <span className="sm:hidden">Google Gemini 2.0</span>
           </p>
         </div>
       </Card>
 
       {/* AI Capabilities with enhanced cards */}
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-500/10 to-orange-600/5 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader>
-            <CardTitle className="text-sm flex items-center gap-2">
-              <span className="text-2xl">🔍</span>
+            <CardTitle className="text-xs sm:text-sm flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">🔍</span>
               <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent font-bold">
                 Real-time Analysis
               </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-muted-foreground leading-relaxed">
+          <CardContent className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">
             Access live plant data, calculate KPIs, and identify trends across all operations
           </CardContent>
         </Card>
         <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-500/10 to-purple-600/5 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader>
-            <CardTitle className="text-sm flex items-center gap-2">
-              <span className="text-2xl">🎯</span>
+            <CardTitle className="text-xs sm:text-sm flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">🎯</span>
               <span className="bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent font-bold">
                 Smart Recommendations
               </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-muted-foreground leading-relaxed">
+          <CardContent className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">
             AI-powered optimization suggestions with estimated savings and implementation guidance
           </CardContent>
         </Card>
         <Card className="border-0 shadow-lg bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardHeader>
-            <CardTitle className="text-sm flex items-center gap-2">
-              <span className="text-2xl">📊</span>
+            <CardTitle className="text-xs sm:text-sm flex items-center gap-2">
+              <span className="text-xl sm:text-2xl">📊</span>
               <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 bg-clip-text text-transparent font-bold">
                 Predictive Insights
               </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-muted-foreground leading-relaxed">
+          <CardContent className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">
             Forecast quality issues, predict maintenance needs, and optimize resource allocation
           </CardContent>
         </Card>
