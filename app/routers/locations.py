@@ -9,7 +9,7 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 from sqlalchemy import text
 
-from app.db.session import AsyncSessionLocal
+from app.db import session as db_session
 from app.core.logging_config import logger
 
 router = APIRouter()
@@ -70,11 +70,11 @@ async def get_all_locations(
     """
     try:
         # Check if database session is available
-        if AsyncSessionLocal is None:
+        if db_session.AsyncSessionLocal is None:
             logger.warning("Database session not available, returning empty list")
             return []
         
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = "SELECT * FROM plant_locations WHERE 1=1"
             params = {}
             
@@ -114,7 +114,7 @@ async def get_location_by_code(plant_code: str):
     - **plant_code**: Unique plant code (e.g., JK-NIMBAHERA, JK-MANGROL)
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = text("""
                 SELECT * FROM plant_locations 
                 WHERE plant_code = :plant_code
@@ -152,7 +152,7 @@ async def get_nearby_plants(
     - **radius_km**: Search radius in kilometers (default: 500km)
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             # First get the reference plant
             ref_query = text("SELECT * FROM plant_locations WHERE plant_code = :plant_code")
             ref_result = await session.execute(ref_query, {"plant_code": plant_code})
@@ -215,7 +215,7 @@ async def get_location_stats():
     """
     try:
         # Check if database session is available
-        if AsyncSessionLocal is None:
+        if db_session.AsyncSessionLocal is None:
             logger.warning("Database session not available, returning default stats")
             return {
                 "total_plants": 0,
@@ -226,7 +226,7 @@ async def get_location_stats():
                 "plant_types": {}
             }
         
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             # Total plants and capacity
             total_query = text("""
                 SELECT 
@@ -295,7 +295,7 @@ async def get_locations_by_state(state: str):
     - **state**: State name (e.g., Rajasthan, Gujarat, Andhra Pradesh)
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = text("""
                 SELECT * FROM plant_locations 
                 WHERE state = :state
@@ -338,7 +338,7 @@ async def get_map_markers():
     Returns essential information for displaying plants on a map
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = text("""
                 SELECT 
                     plant_code,

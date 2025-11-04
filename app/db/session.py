@@ -236,12 +236,15 @@ async def init_engine():
                 raise RuntimeError("JDBC_DB_STRING not set but USE_CLOUD_SQL_PROXY is False")
             
             jdbc_params = parse_jdbc_connection_string(settings.JDBC_DB_STRING)
+            print(f"[DEBUG] Parsed JDBC params: {jdbc_params}")  # Debug logging
             
             # If cloudSqlInstance is present, initialize connector first
             if jdbc_params['cloudSqlInstance']:
+                print(f"[DEBUG] Initializing Cloud SQL Connector for instance: {jdbc_params['cloudSqlInstance']}")
                 await init_connector()
                 engine = _create_cloud_sql_engine(jdbc_params)
             else:
+                print(f"[DEBUG] Using standard engine (no cloudSqlInstance found)")
                 engine = _create_standard_engine(jdbc_params)
         
         # Create async session factory
@@ -253,10 +256,16 @@ async def init_engine():
                 autocommit=False,
                 autoflush=False,
             )
+            print(f"[DEBUG] AsyncSessionLocal created successfully: {AsyncSessionLocal is not None}")
+        else:
+            print("[ERROR] Engine is None after initialization!")
         
         _engine_initialized = True
         return engine
     except Exception as e:
+        print(f"[ERROR] Failed to initialize database engine: {e}")
+        import traceback
+        print(f"[ERROR] Traceback: {traceback.format_exc()}")
         raise RuntimeError(f"Failed to initialize database engine: {e}")
 
 

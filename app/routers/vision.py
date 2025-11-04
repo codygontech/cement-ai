@@ -15,7 +15,7 @@ from PIL import Image
 
 from app.core.config import settings
 from app.core.logging_config import logger
-from app.db.session import AsyncSessionLocal
+from app.db import session as db_session
 from sqlalchemy import text
 
 router = APIRouter()
@@ -140,7 +140,7 @@ async def analyze_image(
         
         # Save results to database
         try:
-            async with AsyncSessionLocal() as session:
+            async with db_session.AsyncSessionLocal() as session:
                 await session.execute(
                     text("""
                         INSERT INTO quality_metrics 
@@ -203,7 +203,7 @@ async def get_inspection_history(days: int = 7, limit: int = 100):
     Get vision inspection history
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT 

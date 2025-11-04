@@ -27,6 +27,14 @@ async def lifespan(app: FastAPI):
     # Initialize database engine and tables
     try:
         if settings.DATABASE_URL or settings.JDBC_DB_STRING:
+            logger.info(f"Initializing database with USE_CLOUD_SQL_PROXY={settings.USE_CLOUD_SQL_PROXY}")
+            if settings.USE_CLOUD_SQL_PROXY:
+                logger.info(f"Using DATABASE_URL: {settings.DATABASE_URL[:50]}..." if settings.DATABASE_URL else "DATABASE_URL not set!")
+            else:
+                logger.info(f"Using JDBC_DB_STRING: {settings.JDBC_DB_STRING}")
+                logger.info(f"DATABASE_USER: {settings.DATABASE_USER}")
+                logger.info(f"DATABASE_NAME: {settings.DATABASE_NAME}")
+            
             # Initialize engine first (this will also init connector if needed)
             await init_engine()
             logger.info("Database engine initialized successfully")
@@ -37,7 +45,10 @@ async def lifespan(app: FastAPI):
         else:
             logger.warning("Neither DATABASE_URL nor JDBC_DB_STRING set, skipping database initialization")
     except Exception as e:
-        logger.warning(f"Database initialization failed (non-fatal): {e}")
+        logger.error(f"Database initialization failed: {e}", exc_info=True)
+        logger.error("Application will continue but database operations will return empty data")
+        import traceback
+        logger.error(f"Full traceback: {traceback.format_exc()}")
     
     # Start background cleanup task for rate limiting
     cleanup_task = asyncio.create_task(cleanup_old_data())

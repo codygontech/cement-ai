@@ -18,7 +18,7 @@ from datetime import datetime, timedelta
 from app.core.config import settings
 from app.core.logging_config import logger
 from sqlalchemy import text
-from app.db.session import AsyncSessionLocal
+from app.db import session as db_session
 
 
 class AgentState(TypedDict):
@@ -51,7 +51,7 @@ async def get_realtime_plant_data(table_name: str, hours_back: int = 1, limit: i
         Dictionary containing the fetched data
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = text(f"""
                 SELECT * FROM {table_name}
                 WHERE timestamp >= NOW() - INTERVAL '{hours_back} hours'
@@ -89,7 +89,7 @@ async def calculate_efficiency_metrics(process_type: str, hours_back: int = 24) 
         Calculated efficiency metrics and recommendations
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             if process_type == "kiln":
                 query = text(f"""
                     SELECT 
@@ -178,7 +178,7 @@ async def get_ai_recommendations(module: str, limit: int = 10) -> Dict[str, Any]
         List of AI recommendations with priorities and estimated savings
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = text("""
                 SELECT 
                     recommendation_type,
@@ -230,7 +230,7 @@ async def analyze_quality_trends(days_back: int = 7) -> Dict[str, Any]:
         Quality trend analysis and predictions
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             query = text(f"""
                 SELECT 
                     AVG(compressive_strength_28d) as avg_strength,

@@ -20,7 +20,7 @@ from app.core.simple_protection import (
     get_client_id,
     get_stats
 )
-from app.db.session import AsyncSessionLocal
+from app.db import session as db_session
 from sqlalchemy import text
 
 router = APIRouter()
@@ -93,7 +93,7 @@ async def chat(request: ChatRequest, http_request: Request):
         
         # Save to database
         try:
-            async with AsyncSessionLocal() as session:
+            async with db_session.AsyncSessionLocal() as session:
                 # Save user message
                 await session.execute(
                     text("""
@@ -201,7 +201,7 @@ async def get_chat_stats():
     """
     return get_stats()
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT role, content, timestamp

@@ -5,7 +5,7 @@ Data API Router - Complete endpoints for all data tables
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional
 from sqlalchemy import text
-from app.db.session import AsyncSessionLocal
+from app.db import session as db_session  # Import module, not the variable
 from app.core.logging_config import logger
 from datetime import datetime
 
@@ -16,11 +16,11 @@ router = APIRouter()
 async def get_kiln_operations(limit: int = Query(50, ge=1, le=1000)):
     """Get kiln operations data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:  # Access the variable from the module
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT * FROM kiln_operations
@@ -42,11 +42,11 @@ async def get_kiln_operations(limit: int = Query(50, ge=1, le=1000)):
 async def get_alternative_fuels(limit: int = Query(50, ge=1, le=1000)):
     """Get alternative fuels data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT * FROM alternative_fuels
@@ -70,11 +70,11 @@ async def get_optimization_results(
 ):
     """Get optimization results data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             if type:
                 result = await session.execute(
                     text("""
@@ -106,11 +106,11 @@ async def get_optimization_results(
 async def get_utilities_monitoring(limit: int = Query(50, ge=1, le=1000)):
     """Get utilities monitoring data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT * FROM utilities_monitoring
@@ -131,11 +131,11 @@ async def get_utilities_monitoring(limit: int = Query(50, ge=1, le=1000)):
 async def get_raw_material_feed(limit: int = Query(50, ge=1, le=1000)):
     """Get raw material feed data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT * FROM raw_material_feed
@@ -156,11 +156,11 @@ async def get_raw_material_feed(limit: int = Query(50, ge=1, le=1000)):
 async def get_grinding_operations(limit: int = Query(50, ge=1, le=1000)):
     """Get grinding operations data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT * FROM grinding_operations
@@ -181,11 +181,11 @@ async def get_grinding_operations(limit: int = Query(50, ge=1, le=1000)):
 async def get_quality_control(limit: int = Query(50, ge=1, le=1000)):
     """Get quality control data"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             result = await session.execute(
                 text("""
                     SELECT * FROM quality_control
@@ -206,11 +206,11 @@ async def get_quality_control(limit: int = Query(50, ge=1, le=1000)):
 async def get_ai_recommendations(status: Optional[str] = None):
     """Get AI recommendations"""
     try:
-        if not AsyncSessionLocal:
+        if not db_session.AsyncSessionLocal:
             logger.warning("Database not configured, returning empty data")
             return []
             
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             if status:
                 result = await session.execute(
                     text("""

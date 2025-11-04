@@ -9,7 +9,7 @@ from typing import List, Dict, Any
 from datetime import datetime
 
 from app.core.logging_config import logger
-from app.db.session import AsyncSessionLocal
+from app.db import session as db_session
 from sqlalchemy import text
 
 router = APIRouter()
@@ -32,7 +32,7 @@ async def get_optimization_opportunities():
     try:
         opportunities = []
         
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             # Check kiln efficiency
             kiln_result = await session.execute(
                 text("""
@@ -125,7 +125,7 @@ async def get_kpis():
     Get key performance indicators
     """
     try:
-        async with AsyncSessionLocal() as session:
+        async with db_session.AsyncSessionLocal() as session:
             # Overall plant efficiency
             result = await session.execute(
                 text("""
