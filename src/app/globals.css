@@ -235,15 +235,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile responsive utilities */
 @media (max-width: 640px) {
-  /* Reduce chart heights on mobile */
-  .recharts-wrapper {
-    max-width: 100% !important;
-  }
-  
   /* Better touch targets */
   button, a {
     min-height: 44px;
     min-width: 44px;
+  }
+}
+
+/* Fix for charts on mobile devices - CRITICAL */
+@media (max-width: 768px) {
+  /* Force ResponsiveContainer to have explicit dimensions */
+  .recharts-responsive-container {
+    width: 100% !important;
+    position: relative !important;
   }
 }
 

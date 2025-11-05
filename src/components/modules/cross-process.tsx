@@ -103,12 +103,12 @@ export function CrossProcessModule() {
             <CardTitle>Overall Plant Efficiency Trend</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]">
+            <div className="w-full" style={{ height: '300px', minHeight: '250px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={overallEfficiencyData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="time" />
-                  <YAxis domain={[80, 95]} />
+                  <XAxis dataKey="time" fontSize={10} />
+                  <YAxis domain={[80, 95]} fontSize={10} />
                   <Tooltip />
                   <Area
                     type="monotone"
@@ -139,12 +139,12 @@ export function CrossProcessModule() {
             <CardTitle>Process Integration Status</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]">
+            <div className="w-full" style={{ height: '300px', minHeight: '250px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={processIntegrationData} layout="vertical" margin={{ left: 20, right: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" domain={[0, 100]} />
-                  <YAxis dataKey="process" type="category" width={120} fontSize={11} />
+                  <XAxis type="number" domain={[0, 100]} fontSize={10} />
+                  <YAxis dataKey="process" type="category" width={100} fontSize={9} />
                   <Tooltip />
                   <Bar dataKey="current" fill={CHART_COLORS.secondary} name="Current" />
                   <Bar dataKey="target" fill={CHART_COLORS.primary} name="AI Target" />

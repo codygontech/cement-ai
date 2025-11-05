@@ -324,63 +324,67 @@ export function ExecutiveDashboard() {
 
       {/* Charts Grid */}
       <div className="grid gap-4 md:grid-cols-2">
-        <Card className="h-96 py-5">
+        <Card className="py-5">
           <CardHeader className="pb-3">
             <CardTitle className="text-lg font-semibold">Energy Consumption vs Target</CardTitle>
             <CardDescription className="text-xs">Current performance compared to AI-optimized targets</CardDescription>
           </CardHeader>
-          <CardContent className="h-[calc(100%-5rem)]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={energyData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis dataKey="equipment" fontSize={11} />
-                <YAxis fontSize={11} />
-                <Tooltip 
-                  contentStyle={{ 
-                    borderRadius: '8px', 
-                    border: '1px solid #e5e7eb',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                  }}
-                />
-                <Bar dataKey="current" fill={CHART_COLORS.error} name="Current" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="target" fill={CHART_COLORS.primary} name="AI Target" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+          <CardContent>
+            <div className="w-full" style={{ height: '280px', minHeight: '200px' }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={energyData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="equipment" fontSize={9} interval={0} angle={-25} textAnchor="end" height={60} />
+                  <YAxis fontSize={10} />
+                  <Tooltip 
+                    contentStyle={{ 
+                      borderRadius: '8px', 
+                      border: '1px solid #e5e7eb',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                    }}
+                  />
+                  <Bar dataKey="current" fill={CHART_COLORS.error} name="Current" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="target" fill={CHART_COLORS.primary} name="AI Target" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="h-96 py-5">
+        <Card className="py-5">
           <CardHeader className="pb-3">
             <CardTitle className="text-lg font-semibold">CO₂ Emissions Reduction</CardTitle>
             <CardDescription className="text-xs">Breakdown of emission sources by category</CardDescription>
           </CardHeader>
-          <CardContent className="h-[calc(100%-5rem)]">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={co2Data}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={45}
-                  outerRadius={85}
-                  paddingAngle={3}
-                  dataKey="value"
-                  label={({ name, value }) => `${name}: ${value}%`}
-                  labelLine={{ stroke: '#888', strokeWidth: 1 }}
-                >
-                  {co2Data.map((entry: { name: string; value: number; color: string }, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  contentStyle={{ 
-                    borderRadius: '8px', 
-                    border: '1px solid #e5e7eb',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+          <CardContent>
+            <div className="w-full" style={{ height: '280px', minHeight: '200px' }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={co2Data}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={45}
+                    outerRadius={85}
+                    paddingAngle={3}
+                    dataKey="value"
+                    label={({ name, value }) => `${name}: ${value}%`}
+                    labelLine={{ stroke: '#888', strokeWidth: 1 }}
+                  >
+                    {co2Data.map((entry: { name: string; value: number; color: string }, index: number) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    contentStyle={{ 
+                      borderRadius: '8px', 
+                      border: '1px solid #e5e7eb',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
       </div>

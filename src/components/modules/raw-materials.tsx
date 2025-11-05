@@ -246,18 +246,18 @@ export function RawMaterialsModule() {
         <Card className="chart-card">
           <CardContent className="flex flex-col p-4">
             <h3 className="text-base font-semibold mb-3">Feed Rate Optimization</h3>
-            <div className="w-full h-[200px]">
+            <div className="w-full" style={{ height: '200px', minHeight: '180px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={feedRateData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis 
                     dataKey="time" 
-                    fontSize={10}
-                    tick={{ fontSize: 10 }}
+                    fontSize={9}
+                    tick={{ fontSize: 9 }}
                   />
                   <YAxis 
-                    fontSize={10}
-                    tick={{ fontSize: 10 }}
+                    fontSize={9}
+                    tick={{ fontSize: 9 }}
                   />
                   <Tooltip />
                   <Line 

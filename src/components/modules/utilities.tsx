@@ -139,12 +139,19 @@ export function UtilitiesModule() {
             <CardTitle>Power Consumption by Equipment</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]">
+            <div className="w-full" style={{ height: '300px', minHeight: '250px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={powerConsumptionData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="equipment" angle={-45} textAnchor="end" height={80} />
-                  <YAxis />
+                  <XAxis 
+                    dataKey="equipment" 
+                    angle={-45} 
+                    textAnchor="end" 
+                    height={80}
+                    interval={0}
+                    fontSize={10}
+                  />
+                  <YAxis fontSize={10} />
                   <Tooltip />
                   <Bar dataKey="consumption" fill={CHART_COLORS.error} name="Current (kWh/t)" />
                   <Bar dataKey="optimized" fill={CHART_COLORS.success} name="AI Target (kWh/t)" />
@@ -159,13 +166,13 @@ export function UtilitiesModule() {
             <CardTitle>Material Handling Efficiency</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]">
+            <div className="w-full" style={{ height: '300px', minHeight: '250px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={efficiencyTrendData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="time" />
-                  <YAxis yAxisId="left" />
-                  <YAxis yAxisId="right" orientation="right" />
+                  <XAxis dataKey="time" fontSize={10} />
+                  <YAxis yAxisId="left" fontSize={10} />
+                  <YAxis yAxisId="right" orientation="right" fontSize={10} />
                   <Tooltip />
                   <Line 
                     yAxisId="left"

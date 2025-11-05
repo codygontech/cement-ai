@@ -123,12 +123,19 @@ export function KilnOperationsModule() {
             <CardTitle className="text-lg font-semibold">Temperature Zones</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]">
+            <div className="w-full" style={{ height: '300px', minHeight: '250px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={temperatureData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                  <XAxis dataKey="zone" angle={-45} textAnchor="end" height={100} fontSize={11} />
-                  <YAxis fontSize={11} />
+                  <XAxis 
+                    dataKey="zone" 
+                    angle={-45} 
+                    textAnchor="end" 
+                    height={100} 
+                    fontSize={9}
+                    interval={0}
+                  />
+                  <YAxis fontSize={10} />
                   <Tooltip 
                     contentStyle={{ 
                       borderRadius: '8px', 

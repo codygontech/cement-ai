@@ -47,7 +47,7 @@ export function MainLayout() {
   };
 
   return (
-    <div className="h-screen w-full bg-gradient-to-br from-background via-muted/30 to-background overflow-hidden">
+    <div className="h-screen w-full bg-gradient-to-br from-background via-muted/30 to-background">
       <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       
       <div className="flex h-[calc(100vh-4rem)]">
@@ -58,7 +58,7 @@ export function MainLayout() {
           onClose={() => setIsSidebarOpen(false)}
         />
         
-        <main className="flex-1 lg:ml-72 overflow-y-auto overflow-x-hidden h-full">
+        <main className="flex-1 lg:ml-72 overflow-y-auto h-full">
           <div className="p-4 md:p-6 lg:p-8 pb-20 md:pb-24">
             {renderActiveModule()}
           </div>
