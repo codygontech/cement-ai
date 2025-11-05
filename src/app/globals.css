@@ -251,6 +251,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Remove focus outline from chart elements */
+.recharts-wrapper,
+.recharts-surface,
+.recharts-layer,
+.recharts-bar,
+.recharts-line,
+.recharts-area,
+.recharts-sector,
+.recharts-curve,
+.recharts-rectangle {
+  outline: none !important;
+}
+
+/* Remove focus outline from SVG elements */
+svg:focus,
+svg *:focus {
+  outline: none !important;
+}
+
+/* Keep focus visible for interactive chart elements like tooltips */
+.recharts-tooltip-wrapper:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
 /* Prevent horizontal overflow on mobile */
 body {
   overflow-x: hidden;
