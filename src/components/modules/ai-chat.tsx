@@ -190,7 +190,7 @@ export function AIChatModule() {
   };
 
   return (
-    <div className="space-y-6 md:space-y-8">
+    <div>
       {/* Header with gradient accent */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3 md:gap-4">
@@ -285,14 +285,14 @@ export function AIChatModule() {
                 <Sparkles className="h-3 w-3 md:h-3.5 md:w-3.5 text-orange-500" />
                 Suggested follow-ups
               </p>
-              <div className="flex flex-wrap gap-2 sm:gap-2.5">
+              <div className="flex overflow-x-auto gap-2 sm:gap-2.5 pb-2 scrollbar-thin scrollbar-thumb-orange-500/20 scrollbar-track-transparent hover:scrollbar-thumb-orange-500/40 [-ms-overflow-style:none] [scrollbar-width:thin]">
                 {recommendations.map((recommendation, index) => (
                   <Button
                     key={index}
                     variant="default"
                     size="sm"
                     onClick={() => handleRecommendationClick(recommendation)}
-                    className="text-[10px] sm:text-xs bg-gradient-to-br from-orange-500 to-purple-600 text-white hover:from-orange-600 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md border-0"
+                    className="text-[10px] sm:text-xs bg-gradient-to-br from-orange-500 to-purple-600 text-white hover:from-orange-600 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md border-0 whitespace-nowrap flex-shrink-0 px-2.5 py-1.5 sm:px-4 sm:py-2 h-auto"
                     disabled={isLoading}
                   >
                     {recommendation}
